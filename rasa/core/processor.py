@@ -145,7 +145,7 @@ class MessageProcessor(object):
         self,
         sender_id: Text,
         action_name: Text,
-        output_channel: OutputChannel,
+        output_channel: CollectingOutputChannel,
         nlg: NaturalLanguageGenerator,
         policy: Text,
         confidence: float,

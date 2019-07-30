@@ -251,7 +251,6 @@ paths:
       parameters:
       - $ref: '#/components/parameters/conversation_id'
       - $ref: '#/components/parameters/include_events'
-      - $ref: '#/components/parameters/output_channel'
       requestBody:
         required: true
         content:
@@ -737,28 +736,6 @@ components:
         type: number
         default: None
       required: false
-    output_channel:
-      in: query
-      name: output_channel
-      description: >-
-        The bot's utterances will be forwarded to this channel. It uses the credentials
-        listed in `credentials.yml` to connect. In case the channel does
-        not support this, the utterances will be returned in the response body. Use
-        `latest` to try to send the messages to the latest channel the user used.
-        Currently supported channels are listed in the permitted values for the
-        parameter.
-      example: "slack"
-      schema:
-        type: string
-        enum:
-          - latest
-          - slack
-          - callback
-          - facebook
-          - rocketchat
-          - telegram
-          - twilio
-          - webexteams
 
   responses:
 
@@ -804,7 +781,7 @@ components:
             reason: "NotAuthenticated"
             message: >-
               User is not authenticated to access resource.
-            code: 401
+            code: 403
     403NotAuthorized:
       description: User has insufficient permission.
       content:

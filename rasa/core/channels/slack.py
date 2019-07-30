@@ -264,7 +264,7 @@ class SlackInput(InputChannel):
             return response.text(None, status=201, headers={"X-Slack-No-Retry": 1})
 
         try:
-            out_channel = self.get_output_channel()
+            out_channel = SlackBot(self.slack_token, self.slack_channel)
             user_msg = UserMessage(
                 text, out_channel, sender_id, input_channel=self.name()
             )
@@ -321,6 +321,3 @@ class SlackInput(InputChannel):
             return response.text("Bot message delivered")
 
         return slack_webhook
-
-    def get_output_channel(self) -> OutputChannel:
-        return SlackBot(self.slack_token, self.slack_channel)

@@ -62,13 +62,10 @@ class CallbackInput(RestInput):
             sender_id = await self._extract_sender(request)
             text = self._extract_message(request)
 
-            collector = self.get_output_channel()
+            collector = CallbackOutput(self.callback_endpoint)
             await on_new_message(
                 UserMessage(text, collector, sender_id, input_channel=self.name())
             )
             return response.text("success")
 
         return callback_webhook
-
-    def get_output_channel(self) -> CollectingOutputChannel:
-        return CallbackOutput(self.callback_endpoint)

@@ -1,15 +1,7 @@
 # coding=utf-8
 import pytest
 
-from rasa.core.slots import (
-    Slot,
-    TextSlot,
-    BooleanSlot,
-    FloatSlot,
-    ListSlot,
-    UnfeaturizedSlot,
-    CategoricalSlot,
-)
+from rasa.core.slots import *
 
 
 class SlotTestCollection(object):
